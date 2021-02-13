@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka1
+  namespace: kafka-cluster
+  labels:
+    app: kafka-broker-1
+spec:
+  clusterIP: None
+  ports:
+    - port: 9092
+      name: kafka-port
+      protocol: TCP
+  selector:
+    app: kafka-broker-1
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: kafka2
+  namespace: kafka-cluster
+  labels:
+    app: kafka-broker-2
+spec:
+  clusterIP: None
+  ports:
+    - port: 9092
+      name: kafka-port
+      protocol: TCP
+  selector:
+    app: kafka-broker-2
+
+
+-----
+kind: Service
+apiVersion: v1
+metadata:
+  name: kafka3
+  namespace: kafka-cluster
+  labels:
+    app: kafka-broker-3
+spec:
+  clusterIP: None
+  ports:
+    - port: 9092
+      name: kafka-port
+      protocol: TCP
+  selector:
+    app: kafka-broker-3
+
+
+# Simple deployment used to deploy and manage the app in nigelpoulton/getting-started-k8s:1.0
+# apiVersion: v1
+# kind: Service
+# metadata:
+#  name: kafka-service
+#   labels:
+#     app: kafka
+# spec:
+#   ports:
+#     - port: 9092
+#       name: kafka-port
+#       protocol: TCP
+#   selector:
+#     app: kafka
+#     id: "0"
+#   type: LoadBalancer
+
+#
+#  apiVersion: v1
+#  kind: Service
+#  metadata:
+#    name: kafka-ip-service
+#  spec:
+#    type: ClusterIP
+#    selector:
+#      component: kafka
+#    ports:
+#      - name: kafka
+#        port: 9092
+#        targetPort: 9092

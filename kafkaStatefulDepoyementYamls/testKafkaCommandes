@@ -1,0 +1,16 @@
+kubectl -n kafka-cluster exec -ti testclient -- ./bin/kafka-console-producer.sh --broker-list kafka1:9092 --topic messages
+
+kubectl -n kafka-cluster exec -ti testclient -- ./bin/kafka-console-consumer.sh --bootstrap-server kafka1:9092 --topic messages --from-beginning
+
+kubectl -n kafka-cluster exec -ti testclient -- ./bin/kafka-topics.sh --zookeeper zoo1:2181 --topic messages --create --partitions 1 --replication-factor 1
+
+kubectl -n kafka-cluster exec -ti testclient -- ./bin/kafka-topics.sh --zookeeper zoo1:2181 --list
+
+kubectl -n kafka-cluster exec -ti testclient -- ./bin/kafka-topics.sh  --describe --zookeeper zoo1:2181 --topic messages
+
+
+
+
+https://platform9.com/tutorials/how-to-set-up-and-run-kafka-on-kubernetes/
+
+
